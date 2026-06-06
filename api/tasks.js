@@ -45,18 +45,20 @@ module.exports = (req, res) => {
   }
 
   if (method === 'PUT') {
-    const id = parseInt(req.url.split('/').pop());
+    const urlParts = req.url.split('/');
+    const id = parseInt(urlParts[urlParts.length - 1]);
     const index = tasks.findIndex(t => t.id === id);
     if (index !== -1) {
       tasks[index] = { ...tasks[index], ...req.body };
       writeTasks(tasks);
       return res.status(200).json(tasks[index]);
     }
-    return res.status(404).json({ error: "Not found" });
+    return res.status(404).json({ error: "Not found", id, url: req.url });
   }
 
   if (method === 'DELETE') {
-    const id = parseInt(req.url.split('/').pop());
+    const urlParts = req.url.split('/');
+    const id = parseInt(urlParts[urlParts.length - 1]);
     const newTasks = tasks.filter(t => t.id !== id);
     writeTasks(newTasks);
     return res.status(204).end();
