@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskMaster - Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i data-lucide="layout-grid"></i>
+                </div>
+                <span>TaskMaster</span>
+            </div>
+
+            <div class="user-profile-card">
+                <div class="profile-info">
+                    <div class="profile-avatar">Be</div>
+                    <div class="profile-text">
+                        <span class="profile-name">Confidency</span>
+                        <i data-lucide="chevrons-up-down" class="chevron"></i>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <span class="section-title">MAIN MENU</span>
+                    <a href="#" class="nav-item active" id="nav-dashboard"><i data-lucide="layout-dashboard"></i> Dashboard</a>
+                    <a href="#" class="nav-item" id="nav-tasks"><i data-lucide="check-square"></i> Tasks</a>
+                    <a href="#" class="nav-item" id="nav-calendar"><i data-lucide="calendar"></i> Calendar</a>
+                    <a href="#" class="nav-item" id="nav-analytics"><i data-lucide="bar-chart-2"></i> Analytics</a>
+                    <a href="#" class="nav-item" id="nav-team"><i data-lucide="users"></i> Team</a>
+                </div>
+
+                <div class="nav-section">
+                    <span class="section-title">GENERAL</span>
+                    <a href="#" class="nav-item" id="nav-settings"><i data-lucide="settings"></i> Setting</a>
+                    <a href="#" class="nav-item"><i data-lucide="help-circle"></i> Help</a>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <button class="btn btn-primary btn-full"><i data-lucide="plus"></i> Add Project</button>
+                <button class="btn btn-ghost btn-full"><i data-lucide="user-plus"></i> Add Member</button>
+                <button class="btn btn-logout btn-full"><i data-lucide="log-out"></i> Log Out</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <header class="top-bar">
+                <div class="page-title">
+                    <h1>Dashboard</h1>
+                    <p>Monitor all of your projects and tasks here</p>
+                </div>
+                <div class="top-bar-actions">
+                    <div id="connection-status" class="status-indicator">
+                        <span class="status-dot"></span>
+                        <span class="status-text">Checking server...</span>
+                    </div>
+                    <div class="search-container">
+                        <i data-lucide="search"></i>
+                        <input type="text" placeholder="Search anything">
+                        <span class="search-shortcut">⌘ K</span>
+                    </div>
+                    <button class="icon-btn"><i data-lucide="bell"></i></button>
+                    <div class="top-user-avatar" id="top-avatar-btn">
+                        <img src="https://ui-avatars.com/api/?name=User&background=6366f1&color=fff" alt="User">
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard View -->
+            <div id="dashboard-view" class="view">
+                <div class="dashboard-grid">
+                    <!-- Stats Cards -->
+                    <div class="stats-card">
+                        <div class="card-header">
+                            <span>Total Project</span>
+                            <button class="more-btn"><i data-lucide="more-horizontal"></i></button>
+                        </div>
+                        <div class="card-value" id="total-projects">0</div>
+                        <div class="card-trend trend-up">
+                            <i data-lucide="trending-up"></i> 5% Increased
+                        </div>
+                    </div>
+
+                    <div class="stats-card">
+                        <div class="card-header">
+                            <span>Completed Projects</span>
+                            <button class="more-btn"><i data-lucide="more-horizontal"></i></button>
+                        </div>
+                        <div class="card-value" id="completed-projects">0</div>
+                        <div class="card-trend trend-up">
+                            <i data-lucide="trending-up"></i> 8% Increased
+                        </div>
+                    </div>
+
+                    <div class="stats-card">
+                        <div class="card-header">
+                            <span>Running Project</span>
+                            <button class="more-btn"><i data-lucide="more-horizontal"></i></button>
+                        </div>
+                        <div class="card-value" id="running-projects">0</div>
+                        <div class="card-trend trend-up">
+                            <i data-lucide="trending-up"></i> 10% Increased
+                        </div>
+                    </div>
+
+                    <div class="stats-card">
+                        <div class="card-header">
+                            <span>Pending projects</span>
+                            <button class="more-btn"><i data-lucide="more-horizontal"></i></button>
+                        </div>
+                        <div class="card-value" id="pending-projects">0</div>
+                        <div class="card-trend trend-up">
+                            <i data-lucide="trending-up"></i> 6% Increased
+                        </div>
+                    </div>
+
+                    <!-- Analytics Chart Placeholder -->
+                    <div class="content-card analytics-chart">
+                        <div class="card-header">
+                            <h3>Project Analytics</h3>
+                            <button class="more-btn"><i data-lucide="more-horizontal"></i></button>
+                        </div>
+                        <div class="chart-container">
+                            <div class="bar-chart">
+                                <div class="bar" style="height: 40%"></div>
+                                <div class="bar highlight" style="height: 80%"><span class="top-tag">Top</span></div>
+                                <div class="bar" style="height: 60%"></div>
+                                <div class="bar" style="height: 70%"></div>
+                                <div class="bar" style="height: 50%"></div>
+                                <div class="bar highlight" style="height: 85%"></div>
+                                <div class="bar" style="height: 45%"></div>
+                                <div class="bar highlight" style="height: 75%"></div>
+                                <div class="bar" style="height: 30%"></div>
+                                <div class="bar" style="height: 55%"></div>
+                                <div class="bar highlight" style="height: 65%"></div>
+                                <div class="bar" style="height: 60%"></div>
+                            </div>
+                            <div class="chart-labels">
+                                <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Team Collaboration -->
+                    <div class="content-card team-collaboration">
+                        <div class="card-header">
+                            <h3>Team Collaboration</h3>
+                            <button class="add-small-btn"><i data-lucide="plus"></i></button>
+                        </div>
+                        <div class="team-list" id="team-list"></div>
+                    </div>
+
+                    <!-- Project Progress -->
+                    <div class="content-card project-progress">
+                        <div class="card-header">
+                            <h3>Project Progress</h3>
+                            <button class="add-small-btn"><i data-lucide="plus"></i></button>
+                        </div>
+                        <div class="progress-container">
+                            <div class="donut-chart">
+                                <div class="donut-inner">
+                                    <span class="percent">0%</span>
+                                    <span class="label">Progress</span>
+                                </div>
+                            </div>
+                            <div class="progress-legend">
+                                <div class="legend-item"><span class="dot complete"></span> Complete</div>
+                                <div class="legend-item"><span class="dot in-progress"></span> Project Progress</div>
+                                <div class="legend-item"><span class="dot incomplete"></span> In complete</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tasks View -->
+            <div id="tasks-view" class="view hidden">
+                <div class="content-card table-section full-page">
+                    <div class="table-header">
+                        <div class="table-title">
+                            <i data-lucide="check-square" class="purple-icon"></i>
+                            <span>Project Tasks Management</span>
+                        </div>
+                        <div class="table-actions">
+                            <div class="small-search">
+                                <i data-lucide="search"></i>
+                                <input type="text" id="task-search" placeholder="Search name or id">
+                            </div>
+                            <button class="action-btn" onclick="addTask()"><i data-lucide="plus"></i> New Task</button>
+                            <button class="action-btn"><i data-lucide="download"></i> Export</button>
+                        </div>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox"></th>
+                                <th>ID <i data-lucide="chevrons-up-down" class="sort-icon"></i></th>
+                                <th>Task Name <i data-lucide="chevrons-up-down" class="sort-icon"></i></th>
+                                <th>User <i data-lucide="chevrons-up-down" class="sort-icon"></i></th>
+                                <th>Department <i data-lucide="chevrons-up-down" class="sort-icon"></i></th>
+                                <th>Status <i data-lucide="chevrons-up-down" class="sort-icon"></i></th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="task-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Calendar View -->
+            <div id="calendar-view" class="view hidden">
+                <div class="content-card calendar-section full-page">
+                    <div class="calendar-header">
+                        <div class="calendar-title">
+                            <i data-lucide="calendar" class="purple-icon"></i>
+                            <span id="calendar-month-year">June 2026</span>
+                        </div>
+                        <div class="calendar-controls">
+                            <button class="icon-btn" id="prev-month"><i data-lucide="chevron-left"></i></button>
+                            <button class="btn btn-ghost" id="today-btn">Today</button>
+                            <button class="icon-btn" id="next-month"><i data-lucide="chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="calendar-grid-container">
+                        <div class="calendar-weekdays">
+                            <span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span>
+                        </div>
+                        <div id="calendar-days" class="calendar-days">
+                            <!-- Days will be generated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics View -->
+            <div id="analytics-view" class="view hidden">
+                <div class="dashboard-grid">
+                    <div class="content-card analytics-chart full-width-card">
+                        <div class="card-header">
+                            <h3>Project Analytics Detailed</h3>
+                            <button class="more-btn"><i data-lucide="more-horizontal"></i></button>
+                        </div>
+                        <div class="chart-container">
+                            <div class="bar-chart">
+                                <div class="bar" style="height: 40%"></div>
+                                <div class="bar highlight" style="height: 80%"><span class="top-tag">Top</span></div>
+                                <div class="bar" style="height: 60%"></div>
+                                <div class="bar" style="height: 70%"></div>
+                                <div class="bar" style="height: 50%"></div>
+                                <div class="bar highlight" style="height: 85%"></div>
+                                <div class="bar" style="height: 45%"></div>
+                                <div class="bar highlight" style="height: 75%"></div>
+                                <div class="bar" style="height: 30%"></div>
+                                <div class="bar" style="height: 55%"></div>
+                                <div class="bar highlight" style="height: 65%"></div>
+                                <div class="bar" style="height: 60%"></div>
+                            </div>
+                            <div class="chart-labels">
+                                <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="content-card project-progress full-width-card">
+                        <div class="card-header">
+                            <h3>Project Progress Analysis</h3>
+                            <button class="more-btn"><i data-lucide="more-horizontal"></i></button>
+                        </div>
+                        <div class="progress-container horizontal-layout">
+                            <div class="donut-chart">
+                                <div class="donut-inner">
+                                    <span class="percent">0%</span>
+                                    <span class="label">Progress</span>
+                                </div>
+                            </div>
+                            <div class="progress-legend">
+                                <div class="legend-item"><span class="dot complete"></span> Complete Tasks</div>
+                                <div class="legend-item"><span class="dot in-progress"></span> Pending Tasks</div>
+                                <div class="legend-item"><span class="dot incomplete"></span> Future Planning</div>
+                                <p class="progress-description">Detailed breakdown of all project tasks and their current lifecycle status.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Team View -->
+             <div id="team-view" class="view hidden">
+                 <div class="content-card full-page">
+                     <div class="card-header">
+                         <div class="table-title">
+                             <i data-lucide="users" class="purple-icon"></i>
+                             <span>Team Collaboration</span>
+                         </div>
+                         <button class="action-btn" onclick="addMember()"><i data-lucide="user-plus"></i> Add Team Member</button>
+                     </div>
+                     <div class="team-grid" id="team-view-list">
+                         <!-- Team members will be rendered here -->
+                     </div>
+                 </div>
+             </div>
+
+             <!-- Settings View -->
+             <div id="settings-view" class="view hidden">
+                 <div class="content-card full-page">
+                     <div class="card-header">
+                         <div class="table-title">
+                             <i data-lucide="settings" class="purple-icon"></i>
+                             <span>Profile Settings</span>
+                         </div>
+                     </div>
+                     <div class="settings-container">
+                         <div class="settings-profile-preview">
+                             <div class="large-avatar" id="settings-avatar">JD</div>
+                             <div class="profile-main-info">
+                                 <h2 id="display-name">John Doe</h2>
+                                 <p id="display-email">john@example.com</p>
+                             </div>
+                         </div>
+                         <form id="profile-form" class="settings-form">
+                             <div class="form-group">
+                                 <label for="input-name">Full Name</label>
+                                 <input type="text" id="input-name" placeholder="Enter your full name">
+                             </div>
+                             <div class="form-group">
+                                 <label for="input-email">Email Address</label>
+                                 <input type="email" id="input-email" placeholder="Enter your email">
+                             </div>
+                             <div class="form-group">
+                                 <label for="input-mobile">Mobile Number</label>
+                                 <input type="tel" id="input-mobile" placeholder="Enter your mobile number">
+                             </div>
+                             <div class="form-actions">
+                                 <button type="submit" class="btn btn-primary">Save Changes</button>
+                                 <button type="button" class="btn btn-ghost" onclick="resetProfileForm()">Cancel</button>
+                             </div>
+                         </form>
+                     </div>
+                 </div>
+             </div>
+        </main>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal-overlay hidden">
+        <div class="login-card">
+            <div class="login-header">
+                <h2>Welcome Back</h2>
+                <p>Login to your TaskMaster account</p>
+            </div>
+            
+            <div class="social-login">
+                <button class="btn btn-google" onclick="mockSocialLogin('Google')">
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
+                    <span>Continue with Google</span>
+                </button>
+            </div>
+
+            <div class="divider">
+                <span>or login with email</span>
+            </div>
+
+            <form id="login-form" class="settings-form">
+                <div class="form-group">
+                    <label for="login-username">Username or Email</label>
+                    <input type="text" id="login-username" placeholder="Enter your username" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="Enter your password" required>
+                </div>
+                <div class="form-actions-column">
+                    <button type="submit" class="btn btn-primary btn-full">Login</button>
+                    <button type="button" class="btn btn-ghost btn-full" onclick="closeLoginModal()">Cancel</button>
+                </div>
+            </form>
+            
+            <div class="login-footer">
+                <p>Don't have an account? <a href="#" onclick="openSignUpModal()">Sign up</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div id="signup-modal" class="modal-overlay hidden">
+        <div class="login-card">
+            <div class="login-header">
+                <h2>Create Account</h2>
+                <p>Join TaskMaster to manage your projects</p>
+            </div>
+            
+            <div class="social-login">
+                <button class="btn btn-google" onclick="mockSocialLogin('Google')">
+                    <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google">
+                    <span>Sign up with Google</span>
+                </button>
+            </div>
+
+            <div class="divider">
+                <span>or sign up with email</span>
+            </div>
+
+            <form id="signup-form" class="settings-form">
+                <div class="form-group">
+                    <label for="signup-name">Full Name</label>
+                    <input type="text" id="signup-name" placeholder="Enter your full name" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-email">Email Address</label>
+                    <input type="email" id="signup-email" placeholder="Enter your email" required>
+                </div>
+                <div class="form-group">
+                    <label for="signup-password">Password</label>
+                    <input type="password" id="signup-password" placeholder="Create a password" required>
+                </div>
+                <div class="form-actions-column">
+                    <button type="submit" class="btn btn-primary btn-full">Create Account</button>
+                    <button type="button" class="btn btn-ghost btn-full" onclick="closeSignUpModal()">Cancel</button>
+                </div>
+            </form>
+            
+            <div class="login-footer">
+                <p>Already have an account? <a href="#" onclick="openLoginModal()">Login</a></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>
