@@ -8,6 +8,10 @@
     {
       "source": "/api/tasks",
       "destination": "/api/tasks.js"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/$1"
     }
   ]
 }
